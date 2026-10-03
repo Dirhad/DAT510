@@ -6,16 +6,21 @@ from task1_part_2 import encrypt, decrypt
 # Pseudo-random generators
 # Public-key cryptography (PKC)-based key exchange protocol
 
-# Step 1. Public key (Diffie Helman)
+# Step 1. Diffie Helman Key-exhange
+# Agree on Public key 
 p = 1187
-g = 2 # p-1 = 2 * 593 (prime 593)
+g = 2          # p-1 = 2 * 593 (prime 593)
 
+
+# Private key for each
 a = 23
 b = 192
 
+#Compute public values from private 
 x = g**a % p # Same as doing pow(g, a, p)
 y = g**b % p # Same as doing pow(g, b, p)
 
+# Shared key
 Ka = y**a % p
 Kb = x**b % p
 
@@ -47,6 +52,7 @@ P = random_blum_prime(400, 1000)
 Q = random_blum_prime(400, 1000)
 n = P * Q
 
+# Blum Blum Shub - pseudo random generator, stretch the shared number into n_bits
 def bbs_bits(seed, n_bits):
     x_i = seed % n
     while gcd(x_i, n) != 1 or x_i in (0,1):

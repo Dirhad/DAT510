@@ -1,0 +1,4 @@
+*.mov
+*.zip
+Video/
+.DS_Store
